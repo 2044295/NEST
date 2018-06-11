@@ -6,6 +6,7 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>Neural Simulation Technology</title>
+    <link rel="icon" type="image/png" href="./images/brain_favicon.png">
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/beige.css">
@@ -55,6 +56,18 @@
         margin: auto;
         padding: 2.5%;
       }
+
+			div.right-content .image {
+				text-align: center;
+			}
+
+			div.left-content .image {
+				text-align: center;
+			}
+
+			div.whole-content .image {
+				text-align: center;
+			}
     </style>
   </head>
 	<body>
@@ -62,13 +75,35 @@
 			<div class="slides">
 
 				<section id="Title Slide" class="center">
-            <img src="../Images/NEST.jpg" width=35% />
+            <img src="./images/NEST.jpg" width=35% />
             <h1>Neural Simulation</h1>
           <h3>Evan Keeton</h3>
         </section>
 
-				<section id="Intro to NEST">
-          <section id="What Is NEST?">
+        <section id="Introduction">
+          <section id="Intro-Timmy">
+            <div class="title">
+              <h2>Timmy</h2>
+            </div>
+            <div class="left-content">
+              <ul>
+                <li class="fragment fade up">Student at Isoneday High School</li>
+                <li class="fragment fade up">TEMSay program</li>
+                <li class="fragment fade up">AP Biology</li>
+                <li class="fragment fade up">Hottest student</li>
+              </ul>
+            </div>
+            <div class="right-content image">
+              <img src="./images/Timmy.jpg" height="240em" class="fragment fade up"
+                style="background: none; border: none; box-shadow: none"/>
+            </div>
+            <div class="whole-content">
+              <ul>
+                <li class="fragment fade up">Uses NEST Software</li>
+              </ul>
+            </div>
+          </section>
+          <section id="Intro-NEST?">
             <div class="title">
               <h2>What is NEST?</h2>
             </div>
@@ -81,8 +116,8 @@
                 <li class="fragment fade up">Works with graphing</li>
               </ul>
             </div>
-            <div class="right-content">
-              <img class="fragment fade up" src="../Images/NEST - General Example.jpg" />
+            <div class="right-content image">
+              <img class="fragment fade up" src="./images/NEST - General Example.jpg" />
             </div>
           </section>
           <section id="NEST Softwares">
@@ -96,8 +131,8 @@
                   <td width="50%" align="center">Python (PyNEST)</td>
                 </tr>
                 <tr>
-                  <td align="center"><img src="../Images/NEST.jpg" height="200em" /></td>
-                  <td align="center"><img src="../Images/Python.jpg" height="200em" /></td>
+                  <td align="center"><img src="./images/NEST.jpg" height="200em" /></td>
+                  <td align="center"><img src="./images/Python.jpg" height="200em" /></td>
                 </tr>
               </table>
             </div>
@@ -105,7 +140,157 @@
         </section>
 
         <section id="Neurons: Review">
+          <section id="Neurons: How They Work">
+            <div class="title">
+              <h2>Neurons: A Review</h2>
+            </div>
+            <div class="left-content">
+              <ul>
+                <li class="fragment fade up">Cell body + axon</li>
+                <li class="fragment fade up">Electrical gradient</li>
+                <li class="fragment fade up">Action potential threshold</li>
+                <ul>
+                  <li class="fragment fade up">Action potential travels along axon</li>
+                </ul>
+              </ul>
+            </div>
+            <div class="right-content image">
+              <img src="./images/Resting-Action_Potential_Example.png" class="fragment fade up"/>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Nothing major</li>
+                <li>Just a quick structural review</li>
+                <li>Structure is less important than function</li>
+                <ul>
+                  <li>When I say function, I mean the graph</li>
+                  <li>Function in passing threshold and transducing a signal</li>
+                </ul>
+              </ul>
+            </aside>
+          </section>
+          <section id="Generation of Potentials">
+            <div class="title">
+              <h2>Generating Potentials</h2>
+            </div>
+            <div class="left-content image">
+              <img src="images/Spiking-BackgroundNoise-Potential.jpg" class="fragment fade up" />
+            </div>
+            <div class="right-content image">
+              <img src="images/Spiking-PoissonInput.jpg" class="fragment fade up" />
+            </div>
+          </section>
+          <section id="Connection and Summation">
+            <div class="title">
+              <h2>Connection and Summation</h2>
+            </div>
+            <div class="left-content">
+              <img src="images/Summation-Temporal.jpg" class="fragment fade up" />
+            </div>
+            <div class="right-content">
+              <img src="images/Summation-Spatial.jpg" class="fragment fade up" />
+            </div>
+          </section>
         </section>
+
+				<section id="NEST: Python">
+					<div class="title">
+						<h2>Timmy's Choice: Python</h2>
+					</div>
+					<div class="whole-content">
+						<pre class="fragment fade up">
+							<code data-trim data-noescape>
+								import nest
+								import numpy
+								from matplotlib import pyplot
+							</code>
+						</pre>
+						<ul>
+							<li class="fragment fade up">Libraries to Import</li>
+							<ul class="fragment fade up">
+								<li>NEST - Neural simulation</li>
+								<li>NumPy - Powerful computation</li>
+								<li>MatPlotLib - Graphing</li>
+							</ul>
+						</ul>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Pay little heed to NumPy - Generally unused</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section id="NEST: Generation of Potentials">
+					<section id="Background Noise">
+						<div class="title">
+							<h2>Background Noise Potential</h2>
+						</div>
+						<div class="image">
+							<pre class="fragment fragment fade up">
+								<code data-trim data-noescape>
+									neurons = nest.Create("iaf_psc_alpha", 5)
+									nest.SetStatus(neurons, [{"I_e": 500.0}, {"I_e": 376.0}, {"I_e": 200.0}, {"I_e": 100.0}, {"I_e": 0.0}])
+									nest.Simulate(100.0)
+									pyplot.show()
+								</code>
+							</pre>
+							<img src="images/Spiking-BackgroundNoise.jpg" height="240em" class="fragment fade up" />
+						</div>
+					</section>
+					<section id="Poisson Generator">
+						<div class="title">
+							<h2>Poisson Generator</h2>
+						</div>
+						<div class="image">
+							<pre class="fragment fragment fade up">
+								<code data-trim data-noescape>
+									poisson = nest.Create("poisson_generator"); neuron = nest.Create("iaf_psc_alpha")
+									nest.Connect(poisson, neuron, syn_spec={'weight': 1.2})
+									nest.Simulate(100.0)
+									pyplot.show()
+								</code>
+							</pre>
+							<img src="images/Spiking-PoissonInput.jpg" height="240em" class="fragment fade up"/>
+						</div>
+					</section>
+				</section>
+
+				<section id="NEST: Connection of Neurons">
+					<section id="Temporal">
+						<div class="title">
+							<h2>Background Noise Potential</h2>
+						</div>
+						<div class="image">
+							<pre class="fragment fragment fade up">
+								<code data-trim data-noescape>
+									pre = nest.Create("iaf_psc_alpha", params={"I_e": 500.0}); post=nest.Create("iaf_psc_alpha")
+									nest.Connect(pre, post, syn_spec={'weight': 1.2})
+									nest.Simulate(100.0)
+									pyplot.show()
+								</code>
+							</pre>
+							<img src="images/Summation-Temporal.jpg" height="240em" class="fragment fade up" />
+						</div>
+					</section>
+					<section id="Poisson Generator">
+						<div class="title">
+							<h2>Poisson Generator</h2>
+						</div>
+						<div class="image">
+							<pre class="fragment fragment fade up">
+								<code data-trim data-noescape>
+									pre = nest.Create("iaf_psc_alpha", params={'I_e': 5}, 2); post = nest.Create("iaf_psc_alpha")
+									nest.Connect(pre, neuron, syn_spec={'weight': 900.0})
+									nest.Simulate(100.0)
+									pyplot.show()
+								</code>
+							</pre>
+							<img src="images/Summation-Spatial.jpg" height="240em" class="fragment fade up"/>
+						</div>
+					</section>
+				</section>
+
       </div>
 		</div>
 
@@ -122,6 +307,7 @@
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+      Reveal.configure({ pdfMaxPagesPerSlide: 1 })
 		</script>
 	</body>
 </html>
