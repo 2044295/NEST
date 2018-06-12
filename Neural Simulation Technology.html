@@ -57,17 +57,13 @@
         padding: 2.5%;
       }
 
-			div.right-content .image {
+			div.image {
 				text-align: center;
 			}
 
-			div.left-content .image {
-				text-align: center;
-			}
-
-			div.whole-content .image {
-				text-align: center;
-			}
+      .reveal section img {
+        background: rgb(51, 51, 51);
+      }
     </style>
   </head>
 	<body>
@@ -94,8 +90,7 @@
               </ul>
             </div>
             <div class="right-content image">
-              <img src="./images/Timmy.jpg" height="240em" class="fragment fade up"
-                style="background: none; border: none; box-shadow: none"/>
+              <img src="./images/Timmy.jpg" height="240em" class="fragment fade up" />
             </div>
             <div class="whole-content">
               <ul>
@@ -226,7 +221,7 @@
 						<div class="title">
 							<h2>Background Noise Potential</h2>
 						</div>
-						<div class="image">
+						<div class="whole-content image">
 							<pre class="fragment fragment fade up">
 								<code data-trim data-noescape>
 									neurons = nest.Create("iaf_psc_alpha", 5)
@@ -242,7 +237,7 @@
 						<div class="title">
 							<h2>Poisson Generator</h2>
 						</div>
-						<div class="image">
+						<div class="whole-content image">
 							<pre class="fragment fragment fade up">
 								<code data-trim data-noescape>
 									poisson = nest.Create("poisson_generator"); neuron = nest.Create("iaf_psc_alpha")
@@ -261,7 +256,7 @@
 						<div class="title">
 							<h2>Temporal Summation in NEST</h2>
 						</div>
-						<div class="image">
+						<div class="whole-content image">
 							<pre class="fragment fragment fade up">
 								<code data-trim data-noescape>
 									pre = nest.Create("iaf_psc_alpha", params={"I_e": 500.0}); post=nest.Create("iaf_psc_alpha")
@@ -277,7 +272,7 @@
 						<div class="title">
 							<h2>Spatial Summation in NEST</h2>
 						</div>
-						<div class="image">
+						<div class="whole-content image">
 							<pre class="fragment fragment fade up">
 								<code data-trim data-noescape>
 									pre = nest.Create("iaf_psc_alpha", params={'I_e': 5}, 2); post = nest.Create("iaf_psc_alpha")
@@ -290,6 +285,56 @@
 						</div>
 					</section>
 				</section>
+
+        <section id="Conclusion">
+          <section id="Yes, Timmy is Me">
+            <div class="title">
+              <h2>A Word of Explanation</h2>
+            </div>
+            <div class="whole-content">
+              <ul>
+                <li class="fragment fade up">Yes, "Timmy" is me</li>
+                <ul>
+                  <li class="fragment fade up">"Timmy" clearly is the hottest student though</li>
+                </ul>
+                <li class="fragment fade up">For clarity certain details were excluded</li>
+                <ul>
+                  <li class="fragment fade up">Multimeter (detecting voltage)</li>
+                  <li class="fragment fade up">Spike Detector (detecting spikes)</li>
+                  <li class="fragment fade up">MatPlotLib details (plotting, labelling, etc.)</li>
+                </ul>
+                <li class="fragment fade up">I also did not touch on installation</li>
+              </ul>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Installation was difficult</li>
+                <li>Theoretically could have been done with HomeBrew, but refused to work</li>
+                <li>Installed with untar, cmake, and make</li>
+                <ul>
+                  <li>Slow</li>
+                  <li>Sometimes would not import package in main directory</li>
+                  <li>Did have to symlink package to anaconda3 folder.</li>
+                </ul>
+              </ul>
+            </aside>
+          </section>
+          <section id="Sources">
+            <div class="title">
+              <h2>Sources</h2>
+            </div>
+            <div class="whole-content">
+              <ul>
+                <li> <a href="http://www.nest-simulator.org/">http://www.nest-simulator.org/</a> </li>
+                <li> <a href="https://anaconda.org/">https://anaconda.org/</a> </li>
+                <li> <a href="https://www.umass.edu/wsp/resources/poisson/">https://www.umass.edu/wsp/resources/poisson/</a> </li>
+                <li> <a href="http://www.cns.nyu.edu/~david/handouts/poisson.pdf">http://www.cns.nyu.edu/~david/handouts/poisson.pdf</a> </li>
+                <li> <a href="https://matplotlib.org/">https://matplotlib.org/</a> </li>
+                <li> <a href="https://stackoverflow.com/">https://stackoverflow.com/</a> </li>
+              </ul>
+            </div>
+          </section>
+        </section>
 
       </div>
 		</div>
